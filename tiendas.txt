@@ -1,0 +1,74 @@
+6.500.000 vender
+comprar 
+
+
+bigbuysell
+
+aquamall --> espada rubi
+thisisamall --> cofre del tesoro: 70.000.000
+
+TRADE-HUB --> obsidiana cristalizada: 800.000
+fundidora industrial: vender 22.000.000
+engranaje rosado: vender 19.500.000
+engranaje pegajoso azul: vender 1.300.000
+
+
+Pocion de fertilidad: vender = 800.000 
+hub: comprar = 1500 [max: 2/20 horas]
+
+
+JAPANESE-SHOP:
+engranaje azul: vender = 2.500.000
+Lavanda purpura fértil: vender = 750.000
+
+???:
+molde de fabrica de placa = 40.000.000
+
+
+???:new flower shop
+lingote de cobre: vender = 17.500
+
+???:
+engranaje azul: comprar= 1.250.000	
+
+
+18sussy buy/sell:
+escudo de cuerno: vender = 410.000.000
+hacha de diamante: vender = 60.000.000
+pico de diamante: vender = 70.000.000
+hoz de diamante: vender = 30.000.000
+
+
+ruby buy sell/15L88:
+disco: 1.000.000.000
+
+
+buy/sell/trade:
+hacha de guerra de hierro: comprar = 45.000.000
+barra de acero: vender = 250.000
+lingote de oro: vender = 250.000
+
+
+
+
+buy/sell 2.5k vends:
+pico dorado: comprar = 7.500.000
+hacha dorada: comprar 7.500.000
+hacha diamante: vender = 55.000.000
+pico diamante: vender = 70.000.000
+azaratian longbow: comprar = 7.500.000
+
+masive shop:
+pico dorado: vender = 10.000.000
+hacha dorada: vender = 10.000.000
+void mathock: vender = 
+
+
+
+mega mall
+
+barra de acero: vender = 205.000 
+
+
+
+
