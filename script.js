@@ -8,10 +8,16 @@ function showSlide(index) {
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
     
-    // Show current slide
+    // Show current slide with animation
     if (slides[index]) {
         slides[index].classList.add('active');
+        slides[index].classList.add('carousel-slide-enter');
         dots[index].classList.add('active');
+        
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            slides[index].classList.remove('carousel-slide-enter');
+        }, 500);
     }
 }
 
@@ -86,26 +92,51 @@ function handleDrop(e) {
     
     if (draggedElement && this.dataset.right === draggedElement.dataset.right) {
         // Correct match
-        this.classList.add('correct');
+        this.classList.add('correct', 'game-success');
         draggedElement.style.opacity = '0.5';
         draggedElement.style.pointerEvents = 'none';
         gameScore++;
         updateScore();
         
+        // Add success animation
+        this.style.animation = 'successPulse 0.6s ease';
+        
         // Show success message
         showGameMessage('¡Correcto!', 'success');
+        
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            this.classList.remove('game-success');
+        }, 600);
     } else {
         // Incorrect match
+        this.style.animation = 'shake 0.5s ease';
         showGameMessage('Inténtalo de nuevo', 'error');
+        
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            this.style.animation = '';
+        }, 500);
     }
 }
 
 function updateScore() {
-    document.getElementById('score').textContent = `${gameScore}/6`;
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = `${gameScore}/6`;
+    scoreElement.style.animation = 'scoreUpdate 0.5s ease';
     
     if (gameScore === 6) {
         showGameMessage('¡Felicitaciones! Has completado el juego', 'success');
+        // Add celebration animation to all correct items
+        document.querySelectorAll('.description-item.correct').forEach(item => {
+            item.style.animation = 'bounce 0.6s ease';
+        });
     }
+    
+    // Remove animation class after animation completes
+    setTimeout(() => {
+        scoreElement.style.animation = '';
+    }, 500);
 }
 
 function showGameMessage(message, type) {
@@ -227,21 +258,41 @@ function loadQuestion(index) {
 function selectAnswer(optionIndex) {
     userAnswers[currentQuestionIndex] = optionIndex;
     
-    // Update button styles
+    // Update button styles with animation
     document.querySelectorAll('.option-btn').forEach((btn, index) => {
         btn.classList.remove('selected');
         if (index === optionIndex) {
             btn.classList.add('selected');
+            btn.style.animation = 'pulse 0.3s ease';
         }
     });
     
     updateNavigation();
+    
+    // Remove animation class after animation completes
+    setTimeout(() => {
+        document.querySelectorAll('.option-btn').forEach(btn => {
+            btn.style.animation = '';
+        });
+    }, 300);
 }
 
 function updateProgress() {
     const progress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
-    document.getElementById('progress-fill').style.width = `${progress}%`;
-    document.getElementById('question-counter').textContent = `Pregunta ${currentQuestionIndex + 1} de ${quizQuestions.length}`;
+    const progressFill = document.getElementById('progress-fill');
+    const questionCounter = document.getElementById('question-counter');
+    
+    // Animate progress bar
+    animateProgressBar(progressFill, progress, 500);
+    
+    // Animate counter text
+    questionCounter.style.animation = 'fadeIn 0.3s ease';
+    questionCounter.textContent = `Pregunta ${currentQuestionIndex + 1} de ${quizQuestions.length}`;
+    
+    // Remove animation class after animation completes
+    setTimeout(() => {
+        questionCounter.style.animation = '';
+    }, 300);
 }
 
 function updateNavigation() {
@@ -341,11 +392,295 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
+// Animation utilities
+const AnimationUtils = {
+    // Fade in animation
+    fadeIn: (element, duration = 500) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(30px)';
+        element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+        
+        requestAnimationFrame(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        });
+    },
+
+    // Slide in from left
+    slideInLeft: (element, duration = 500) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateX(-50px)';
+        element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+        
+        requestAnimationFrame(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateX(0)';
+        });
+    },
+
+    // Slide in from right
+    slideInRight: (element, duration = 500) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateX(50px)';
+        element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+        
+        requestAnimationFrame(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateX(0)';
+        });
+    },
+
+    // Scale in animation
+    scaleIn: (element, duration = 500) => {
+        element.style.opacity = '0';
+        element.style.transform = 'scale(0.8)';
+        element.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+        
+        requestAnimationFrame(() => {
+            element.style.opacity = '1';
+            element.style.transform = 'scale(1)';
+        });
+    },
+
+    // Bounce animation
+    bounce: (element, duration = 600) => {
+        element.style.animation = `bounce ${duration}ms ease`;
+    },
+
+    // Pulse animation
+    pulse: (element, duration = 1000) => {
+        element.style.animation = `pulse ${duration}ms ease-in-out`;
+    }
+};
+
+// Intersection Observer for scroll animations
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const element = entry.target;
+            const animationType = element.dataset.animation || 'fadeIn';
+            const delay = parseInt(element.dataset.delay) || 0;
+            
+            setTimeout(() => {
+                switch(animationType) {
+                    case 'fadeIn':
+                        AnimationUtils.fadeIn(element);
+                        break;
+                    case 'slideInLeft':
+                        AnimationUtils.slideInLeft(element);
+                        break;
+                    case 'slideInRight':
+                        AnimationUtils.slideInRight(element);
+                        break;
+                    case 'scaleIn':
+                        AnimationUtils.scaleIn(element);
+                        break;
+                    case 'bounce':
+                        AnimationUtils.bounce(element);
+                        break;
+                }
+            }, delay);
+            
+            scrollObserver.unobserve(element);
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+// Add hover animations to cards
+function addHoverAnimations() {
+    // Info cards hover effect
+    document.querySelectorAll('.info-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
+        });
+    });
+
+    // Objective cards hover effect
+    document.querySelectorAll('.objective-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-12px) scale(1.03)';
+            this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
+        });
+    });
+
+    // Right items hover effect
+    document.querySelectorAll('.right-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+            this.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.1)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+
+    // Quiz options hover effect
+    document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.05)';
+            this.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.1)';
+        });
+        
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+}
+
+// Add typing animation to header
+function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.innerHTML = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// Add floating animation to ILO logo
+function addFloatingAnimation() {
+    const logo = document.querySelector('.ilo-logo');
+    if (logo) {
+        logo.style.animation = 'float 3s ease-in-out infinite';
+    }
+}
+
+// Add parallax effect to header
+function addParallaxEffect() {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const header = document.querySelector('.header');
+        const rate = scrolled * -0.5;
+        
+        if (header) {
+            header.style.transform = `translateY(${rate}px)`;
+        }
+    });
+}
+
+// Add counter animation
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+    
+    function updateCounter() {
+        start += increment;
+        if (start < target) {
+            element.textContent = Math.floor(start);
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
+    }
+    
+    updateCounter();
+}
+
+// Add progress bar animation
+function animateProgressBar(element, target, duration = 1000) {
+    element.style.width = '0%';
+    
+    setTimeout(() => {
+        element.style.transition = `width ${duration}ms ease`;
+        element.style.width = `${target}%`;
+    }, 100);
+}
+
+// Add ripple effect to buttons
+function addRippleEffect() {
+    document.querySelectorAll('button, .nav-link').forEach(element => {
+        element.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+            
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// Add smooth reveal animations to sections
+function addRevealAnimations() {
+    // Add animation attributes to elements
+    document.querySelectorAll('.info-card').forEach((card, index) => {
+        card.dataset.animation = 'fadeIn';
+        card.dataset.delay = index * 100;
+        scrollObserver.observe(card);
+    });
+
+    document.querySelectorAll('.objective-card').forEach((card, index) => {
+        card.dataset.animation = 'scaleIn';
+        card.dataset.delay = index * 150;
+        scrollObserver.observe(card);
+    });
+
+    document.querySelectorAll('.convention-slide').forEach((slide, index) => {
+        slide.dataset.animation = 'fadeIn';
+        slide.dataset.delay = index * 200;
+    });
+
+    document.querySelectorAll('.right-item').forEach((item, index) => {
+        item.dataset.animation = 'slideInLeft';
+        item.dataset.delay = index * 100;
+        scrollObserver.observe(item);
+    });
+
+    document.querySelectorAll('.description-item').forEach((item, index) => {
+        item.dataset.animation = 'slideInRight';
+        item.dataset.delay = index * 100;
+        scrollObserver.observe(item);
+    });
+}
+
 // Initialize quiz
 document.addEventListener('DOMContentLoaded', function() {
     loadQuestion(0);
     
-    // Add CSS animation for game messages
+    // Add comprehensive CSS animations
     const style = document.createElement('style');
     style.textContent = `
         @keyframes slideIn {
@@ -358,8 +693,240 @@ document.addEventListener('DOMContentLoaded', function() {
                 opacity: 1;
             }
         }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-link:hover::before {
+            left: 100%;
+        }
+        
+        .section-title {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 114, 128, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        .carousel-slide-enter {
+            animation: slideInFromRight 0.5s ease;
+        }
+        
+        @keyframes slideInFromRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .game-success {
+            animation: successPulse 0.6s ease;
+        }
+        
+        @keyframes successPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .quiz-correct {
+            animation: correctAnswer 0.5s ease;
+        }
+        
+        @keyframes correctAnswer {
+            0% {
+                background: #f3f4f6;
+            }
+            50% {
+                background: #ecfdf5;
+                transform: scale(1.05);
+            }
+            100% {
+                background: #ecfdf5;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+        
+        @keyframes scoreUpdate {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+                color: #10b981;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
     `;
     document.head.appendChild(style);
+    
+    // Initialize all animations
+    addHoverAnimations();
+    addFloatingAnimation();
+    addParallaxEffect();
+    addRippleEffect();
+    addRevealAnimations();
+    
+    // Add typing effect to header title
+    const headerTitle = document.querySelector('.header-title');
+    if (headerTitle) {
+        const originalText = headerTitle.textContent;
+        typeWriter(headerTitle, originalText, 80);
+    }
+    
+    // Animate counters when they come into view
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.textContent);
+                animateCounter(counter, target);
+                counterObserver.unobserve(counter);
+            }
+        });
+    });
+    
+    // Observe score elements for counter animation
+    document.querySelectorAll('#score, #final-score').forEach(score => {
+        counterObserver.observe(score);
+    });
 });
 
 // Add scroll effect to navigation

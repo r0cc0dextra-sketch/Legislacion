@@ -20,7 +20,7 @@ body {
 
 /* Header Styles */
 .header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
     color: white;
     padding: 2rem 0;
     text-align: center;
@@ -42,7 +42,7 @@ body {
 
 /* Navigation Styles */
 .nav {
-    background-color: #1e40af;
+    background-color: #4b5563;
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -86,7 +86,7 @@ body {
     font-weight: 600;
     text-align: center;
     margin-bottom: 3rem;
-    color: #1e3a8a;
+    color: #374151;
     position: relative;
 }
 
@@ -98,7 +98,7 @@ body {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #1e40af);
+    background: linear-gradient(90deg, #6b7280, #374151);
     border-radius: 2px;
 }
 
@@ -148,14 +148,14 @@ body {
 
 .info-card .icon {
     font-size: 2rem;
-    color: #3b82f6;
+    color: #6b7280;
     margin-bottom: 1rem;
 }
 
 .info-card h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 0.5rem;
 }
 
@@ -172,7 +172,7 @@ body {
 }
 
 .mission h3 {
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 1rem;
     font-size: 1.3rem;
 }
@@ -192,7 +192,7 @@ body {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #3b82f6;
+    color: #6b7280;
     font-weight: bold;
 }
 
@@ -205,12 +205,12 @@ body {
 .ilo-logo {
     width: 200px;
     height: 200px;
-    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    background: linear-gradient(135deg, #6b7280, #374151);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(107, 114, 128, 0.3);
 }
 
 .ilo-logo i {
@@ -238,19 +238,19 @@ body {
 .objective-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    border-color: #3b82f6;
+    border-color: #6b7280;
 }
 
 .card-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    background: linear-gradient(135deg, #6b7280, #374151);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
 }
 
 .card-icon i {
@@ -261,7 +261,7 @@ body {
 .objective-card h3 {
     font-size: 1.3rem;
     font-weight: 600;
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 1rem;
 }
 
@@ -308,13 +308,13 @@ body {
 .convention-icon {
     width: 100px;
     height: 100px;
-    background: linear-gradient(135deg, #3b82f6, #1e40af);
+    background: linear-gradient(135deg, #6b7280, #374151);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 2rem;
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 6px 20px rgba(107, 114, 128, 0.3);
 }
 
 .convention-icon i {
@@ -325,13 +325,13 @@ body {
 .convention-content h3 {
     font-size: 1.8rem;
     font-weight: 600;
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 0.5rem;
 }
 
 .convention-year {
     font-size: 1.1rem;
-    color: #3b82f6;
+    color: #6b7280;
     font-weight: 500;
     margin-bottom: 1.5rem;
 }
@@ -348,11 +348,11 @@ body {
     background: #f8fafc;
     padding: 1.5rem;
     border-radius: 12px;
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid #6b7280;
 }
 
 .convention-details h4 {
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 1rem;
     font-size: 1.1rem;
 }
@@ -372,7 +372,7 @@ body {
     content: '•';
     position: absolute;
     left: 0;
-    color: #3b82f6;
+    color: #6b7280;
     font-weight: bold;
 }
 
@@ -385,7 +385,7 @@ body {
 }
 
 .carousel-btn {
-    background: #3b82f6;
+    background: #6b7280;
     color: white;
     border: none;
     width: 50px;
@@ -397,11 +397,11 @@ body {
     justify-content: center;
     font-size: 1.2rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
 }
 
 .carousel-btn:hover {
-    background: #1e40af;
+    background: #374151;
     transform: scale(1.1);
 }
 
@@ -420,7 +420,7 @@ body {
 }
 
 .dot.active {
-    background: #3b82f6;
+    background: #6b7280;
     transform: scale(1.2);
 }
 
@@ -440,7 +440,7 @@ body {
 }
 
 .rights-list h3, .descriptions-list h3 {
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 1.5rem;
     text-align: center;
     font-size: 1.3rem;
@@ -476,7 +476,7 @@ body {
 
 .right-item i {
     font-size: 1.5rem;
-    color: #3b82f6;
+    color: #6b7280;
 }
 
 .right-item span {
@@ -496,8 +496,8 @@ body {
 }
 
 .description-item.drag-over {
-    border-color: #3b82f6;
-    background: #eff6ff;
+    border-color: #6b7280;
+    background: #f3f4f6;
 }
 
 .description-item.correct {
@@ -523,11 +523,11 @@ body {
 .score-display {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #1e3a8a;
+    color: #374151;
 }
 
 .reset-btn {
-    background: #3b82f6;
+    background: #6b7280;
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -538,7 +538,7 @@ body {
 }
 
 .reset-btn:hover {
-    background: #1e40af;
+    background: #374151;
     transform: translateY(-2px);
 }
 
@@ -554,7 +554,7 @@ body {
 
 .quiz-question h3 {
     font-size: 1.5rem;
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 2rem;
     text-align: center;
 }
@@ -580,13 +580,13 @@ body {
 
 .option-btn:hover {
     background: #e2e8f0;
-    border-color: #3b82f6;
+    border-color: #6b7280;
 }
 
 .option-btn.selected {
-    background: #eff6ff;
-    border-color: #3b82f6;
-    color: #1e40af;
+    background: #f3f4f6;
+    border-color: #6b7280;
+    color: #374151;
 }
 
 .option-btn.correct {
@@ -616,7 +616,7 @@ body {
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #3b82f6, #1e40af);
+    background: linear-gradient(90deg, #6b7280, #374151);
     width: 0%;
     transition: width 0.3s ease;
 }
@@ -643,7 +643,7 @@ body {
 }
 
 .prev-btn, .next-btn, .finish-btn {
-    background: #3b82f6;
+    background: #6b7280;
     color: white;
 }
 
@@ -653,7 +653,7 @@ body {
 }
 
 .quiz-btn:hover:not(:disabled) {
-    background: #1e40af;
+    background: #374151;
     transform: translateY(-2px);
 }
 
@@ -678,14 +678,14 @@ body {
 
 .quiz-results h3 {
     font-size: 2rem;
-    color: #1e3a8a;
+    color: #374151;
     margin-bottom: 1rem;
 }
 
 .results-score {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #3b82f6;
+    color: #6b7280;
     margin-bottom: 2rem;
 }
 
@@ -698,7 +698,7 @@ body {
 
 /* Footer Styles */
 .footer {
-    background: #1e3a8a;
+    background: #374151;
     color: white;
     padding: 3rem 0 1rem;
 }
@@ -713,11 +713,11 @@ body {
 .footer-section h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: #93c5fd;
+    color: #d1d5db;
 }
 
 .footer-section p {
-    color: #cbd5e1;
+    color: #9ca3af;
     line-height: 1.6;
     margin-bottom: 0.5rem;
 }
@@ -725,8 +725,8 @@ body {
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
-    border-top: 1px solid #374151;
-    color: #9ca3af;
+    border-top: 1px solid #4b5563;
+    color: #6b7280;
 }
 
 /* Responsive Design */
