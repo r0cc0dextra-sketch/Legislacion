@@ -235,74 +235,200 @@
             </div>
         </section>
 
-        <!-- Interactive Game Section -->
+        <!-- Interactive Games Section -->
         <section id="juego" class="section section-alt">
             <div class="container">
-                <h2 class="section-title">Pon a Prueba tus Conocimientos</h2>
-                <p class="section-subtitle">Arrastra cada derecho laboral a su descripción correspondiente</p>
+                <h2 class="section-title">Juegos Interactivos</h2>
+                <p class="section-subtitle">Aprende sobre la OIT de manera divertida con estos juegos educativos</p>
                 
-                <div class="game-container">
-                    <div class="rights-list">
-                        <h3>Derechos Laborales</h3>
-                        <div class="rights-items">
-                            <div class="right-item" draggable="true" data-right="libertad-sindical">
-                                <i class="fas fa-users"></i>
-                                <span>Libertad Sindical</span>
-                            </div>
-                            <div class="right-item" draggable="true" data-right="no-discriminacion">
-                                <i class="fas fa-equals"></i>
-                                <span>No Discriminación</span>
-                            </div>
-                            <div class="right-item" draggable="true" data-right="salario-justo">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>Salario Justo</span>
-                            </div>
-                            <div class="right-item" draggable="true" data-right="seguridad-laboral">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>Seguridad Laboral</span>
-                            </div>
-                            <div class="right-item" draggable="true" data-right="jornada-laboral">
-                                <i class="fas fa-clock"></i>
-                                <span>Jornada Laboral</span>
-                            </div>
-                            <div class="right-item" draggable="true" data-right="vacaciones">
-                                <i class="fas fa-umbrella-beach"></i>
-                                <span>Vacaciones</span>
+                <!-- Game Navigation Tabs -->
+                <div class="game-tabs">
+                    <button class="game-tab active" onclick="showGame('drag-drop')">Arrastrar y Soltar</button>
+                    <button class="game-tab" onclick="showGame('memory')">Memoria</button>
+                    <button class="game-tab" onclick="showGame('wordsearch')">Sopa de Letras</button>
+                    <button class="game-tab" onclick="showGame('timeline')">Línea de Tiempo</button>
+                    <button class="game-tab" onclick="showGame('truefalse')">Verdadero/Falso</button>
+                    <button class="game-tab" onclick="showGame('matching')">Emparejar Imágenes</button>
+                </div>
+
+                <!-- Drag and Drop Game -->
+                <div id="drag-drop-game" class="game-content active">
+                    <h3>Arrastra cada derecho laboral a su descripción correspondiente</h3>
+                    <div class="game-container">
+                        <div class="rights-list">
+                            <h4>Derechos Laborales</h4>
+                            <div class="rights-items">
+                                <div class="right-item" draggable="true" data-right="libertad-sindical">
+                                    <i class="fas fa-users"></i>
+                                    <span>Libertad Sindical</span>
+                                </div>
+                                <div class="right-item" draggable="true" data-right="no-discriminacion">
+                                    <i class="fas fa-equals"></i>
+                                    <span>No Discriminación</span>
+                                </div>
+                                <div class="right-item" draggable="true" data-right="salario-justo">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>Salario Justo</span>
+                                </div>
+                                <div class="right-item" draggable="true" data-right="seguridad-laboral">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Seguridad Laboral</span>
+                                </div>
+                                <div class="right-item" draggable="true" data-right="jornada-laboral">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Jornada Laboral</span>
+                                </div>
+                                <div class="right-item" draggable="true" data-right="vacaciones">
+                                    <i class="fas fa-umbrella-beach"></i>
+                                    <span>Vacaciones</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="descriptions-list">
-                        <h3>Descripciones</h3>
-                        <div class="description-items">
-                            <div class="description-item" data-right="libertad-sindical">
-                                <p>Derecho a formar sindicatos y afiliarse a organizaciones de trabajadores</p>
-                            </div>
-                            <div class="description-item" data-right="no-discriminacion">
-                                <p>Igualdad de oportunidades sin distinción de género, raza, religión o edad</p>
-                            </div>
-                            <div class="description-item" data-right="salario-justo">
-                                <p>Remuneración adecuada que permita una vida digna al trabajador y su familia</p>
-                            </div>
-                            <div class="description-item" data-right="seguridad-laboral">
-                                <p>Protección contra accidentes y enfermedades en el lugar de trabajo</p>
-                            </div>
-                            <div class="description-item" data-right="jornada-laboral">
-                                <p>Límite de horas de trabajo diarias y semanales con descansos adecuados</p>
-                            </div>
-                            <div class="description-item" data-right="vacaciones">
-                                <p>Derecho a períodos de descanso pagado para recuperación y esparcimiento</p>
+                        
+                        <div class="descriptions-list">
+                            <h4>Descripciones</h4>
+                            <div class="description-items">
+                                <div class="description-item" data-right="libertad-sindical">
+                                    <p>Derecho a formar sindicatos y afiliarse a organizaciones de trabajadores</p>
+                                </div>
+                                <div class="description-item" data-right="no-discriminacion">
+                                    <p>Igualdad de oportunidades sin distinción de género, raza, religión o edad</p>
+                                </div>
+                                <div class="description-item" data-right="salario-justo">
+                                    <p>Remuneración adecuada que permita una vida digna al trabajador y su familia</p>
+                                </div>
+                                <div class="description-item" data-right="seguridad-laboral">
+                                    <p>Protección contra accidentes y enfermedades en el lugar de trabajo</p>
+                                </div>
+                                <div class="description-item" data-right="jornada-laboral">
+                                    <p>Límite de horas de trabajo diarias y semanales con descansos adecuados</p>
+                                </div>
+                                <div class="description-item" data-right="vacaciones">
+                                    <p>Derecho a períodos de descanso pagado para recuperación y esparcimiento</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Memory Card Game -->
+                <div id="memory-game" class="game-content">
+                    <h3>Juego de Memoria - Encuentra las parejas de convenios de la OIT</h3>
+                    <div class="memory-board" id="memory-board">
+                        <!-- Cards will be generated by JavaScript -->
+                    </div>
+                    <div class="memory-stats">
+                        <div class="stat">
+                            <span>Movimientos: </span>
+                            <span id="memory-moves">0</span>
+                        </div>
+                        <div class="stat">
+                            <span>Parejas: </span>
+                            <span id="memory-pairs">0/8</span>
+                        </div>
+                        <div class="stat">
+                            <span>Tiempo: </span>
+                            <span id="memory-time">00:00</span>
+                        </div>
+                    </div>
+                    <button class="game-btn" onclick="startMemoryGame()">Nuevo Juego</button>
+                </div>
+
+                <!-- Word Search Game -->
+                <div id="wordsearch-game" class="game-content">
+                    <h3>Sopa de Letras - Encuentra los términos relacionados con la OIT</h3>
+                    <div class="wordsearch-container">
+                        <div class="wordsearch-grid" id="wordsearch-grid">
+                            <!-- Grid will be generated by JavaScript -->
+                        </div>
+                        <div class="wordsearch-words">
+                            <h4>Palabras a encontrar:</h4>
+                            <div class="word-list" id="word-list">
+                                <!-- Words will be generated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wordsearch-stats">
+                        <div class="stat">
+                            <span>Encontradas: </span>
+                            <span id="words-found">0/8</span>
+                        </div>
+                        <button class="game-btn" onclick="startWordSearch()">Nueva Sopa</button>
+                    </div>
+                </div>
+
+                <!-- Timeline Game -->
+                <div id="timeline-game" class="game-content">
+                    <h3>Ordena los eventos históricos de la OIT cronológicamente</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-items" id="timeline-items">
+                            <!-- Timeline items will be generated by JavaScript -->
+                        </div>
+                        <div class="timeline-answer" id="timeline-answer">
+                            <!-- Answer slots will be generated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="timeline-stats">
+                        <div class="stat">
+                            <span>Correctas: </span>
+                            <span id="timeline-correct">0/6</span>
+                        </div>
+                        <button class="game-btn" onclick="startTimelineGame()">Nuevo Juego</button>
+                    </div>
+                </div>
+
+                <!-- True/False Game -->
+                <div id="truefalse-game" class="game-content">
+                    <h3>Verdadero o Falso - Demuestra tu conocimiento sobre la OIT</h3>
+                    <div class="truefalse-container">
+                        <div class="question-card" id="truefalse-question">
+                            <h4 id="truefalse-text">Cargando pregunta...</h4>
+                        </div>
+                        <div class="truefalse-buttons">
+                            <button class="truefalse-btn true-btn" onclick="answerTrueFalse(true)">Verdadero</button>
+                            <button class="truefalse-btn false-btn" onclick="answerTrueFalse(false)">Falso</button>
+                        </div>
+                    </div>
+                    <div class="truefalse-stats">
+                        <div class="stat">
+                            <span>Pregunta: </span>
+                            <span id="truefalse-current">1/10</span>
+                        </div>
+                        <div class="stat">
+                            <span>Correctas: </span>
+                            <span id="truefalse-score">0</span>
+                        </div>
+                        <button class="game-btn" onclick="startTrueFalseGame()">Nuevo Juego</button>
+                    </div>
+                </div>
+
+                <!-- Image Matching Game -->
+                <div id="matching-game" class="game-content">
+                    <h3>Empareja las imágenes con los convenios de la OIT</h3>
+                    <div class="matching-container">
+                        <div class="matching-images" id="matching-images">
+                            <!-- Images will be generated by JavaScript -->
+                        </div>
+                        <div class="matching-labels" id="matching-labels">
+                            <!-- Labels will be generated by JavaScript -->
+                        </div>
+                    </div>
+                    <div class="matching-stats">
+                        <div class="stat">
+                            <span>Emparejadas: </span>
+                            <span id="matching-pairs">0/6</span>
+                        </div>
+                        <button class="game-btn" onclick="startMatchingGame()">Nuevo Juego</button>
+                    </div>
+                </div>
+
+                <!-- Game Feedback -->
                 <div class="game-feedback">
                     <div class="score-display">
-                        <span>Puntuación: </span>
-                        <span id="score">0/6</span>
+                        <span>Puntuación Total: </span>
+                        <span id="total-score">0</span>
                     </div>
-                    <button class="reset-btn" onclick="resetGame()">Reiniciar Juego</button>
+                    <button class="reset-btn" onclick="resetAllGames()">Reiniciar Todos los Juegos</button>
                 </div>
             </div>
         </section>
